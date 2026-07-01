@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giveaway Berhadiah Utama | Undian Resmi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        hitam: '#0A0A0F',
+                        emas: '#D4AF37',
+                        merah: '#B22234',
+                        abuTua: '#1E1E2F',
+                        abuMuda: '#2D2D44'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-emas { color: #D4AF37; }
+            .bg-kaca { background: rgba(10, 10, 15, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.12); }
+            .hover-emas:hover { color: #D4AF37; transition: all 0.3s ease; }
+            .tombol-emas { background: linear-gradient(90deg, #D4AF37, #F9E076); color: #000; font-weight: 600; }
+            .tombol-emas:hover { background: linear-gradient(90deg, #F9E076, #D4AF37); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3); }
+            .countdown-box { background: rgba(212, 175, 55, 0.15); border: 1px solid rgba(212, 175, 55, 0.25); }
+        }
+        body {
+            scroll-behavior: smooth;
+            /* === Tambahan Latar Belakang Neon === */
+            background: #0A0A0F url('bg-giveaway-neon.png') center top no-repeat;
+            background-size: 800px auto;
+            background-attachment: fixed;
+            position: relative;
+        }
+        /* Lapisan gelap agar tulisan tetap terbaca jelas */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 10, 15, 0.65);
+            z-index: 0;
+        }
+        /* Pastikan semua konten ada di atas lapisan gelap */
+        main, nav, footer {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="text-white font-inter">
+
+<!-- Navigasi -->
+<nav class="fixed w-full z-50 bg-kaca py-3 px-4 md:px-8">
+    <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-xl md:text-2xl font-bold text-emas">GIVEAWAY UTAMA</h1>
+        <div class="hidden md:flex gap-6 text-sm">
+            <a href="#hadiah" class="hover-emas">Hadiah</a>
+            <a href="#syarat" class="hover-emas">Syarat</a>
+            <a href="#daftar" class="hover-emas">Daftar</a>
+            <a href="#bukti" class="hover-emas">Bukti Pemenang</a>
+            <a href="#kontak" class="hover-emas">Kontak</a>
+        </div>
+        <button class="md:hidden text-2xl" id="menuToggle">
+            <i class="fa fa-bars"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- Menu Mobile -->
+<div id="menuMobile" class="fixed inset-0 bg-hitam/95 z-40 transform -translate-x-full transition-transform duration-300 pt-20 px-8">
+    <div class="flex flex-col gap-5 text-lg">
+        <a href="#hadiah" class="hover-emas py-2">Hadiah Utama</a>
+        <a href="#syarat" class="hover-emas py-2">Syarat & Ketentuan</a>
+        <a href="#daftar" class="hover-emas py-2">Daftar Sekarang</a>
+        <a href="#bukti" class="hover-emas py-2">Bukti Pemenang</a>
+        <a href="#testimoni" class="hover-emas py-2">Testimoni</a>
+        <a href="#faq" class="hover-emas py-2">FAQ</a>
+    </div>
+</div>
+
+<main>
+<!-- Hero Section -->
+<section class="pt-36 pb-24 px-4">
+    <div class="container mx-auto text-center" data-aos="fade-up">
+        <h2 class="text-3xl md:text-5xl font-bold mb-4">Undian Resmi & Terpercaya 🎉</h2>
+        <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-8">Kesempatan emas untuk memenangkan hadiah utama senilai ratusan juta rupiah secara GRATIS! Pendaftaran terbuka untuk semua warga Indonesia.</p>
+        
+        <!-- Countdown -->
+        <div class="flex justify-center gap-4 md:gap-6 mb-10">
+            <div class="countdown-box rounded-lg p-4 w-20 md:w-24" data-aos="zoom-in" data-aos-delay="100">
+                <div class="text-2xl md:text-3xl font-bold text-emas" id="hari">28</div>
+                <div class="text-xs text-gray-300">Hari</div>
+            </div>
+            <div class="countdown-box rounded-lg p-4 w-20 md:w-24" data-aos="zoom-in" data-aos-delay="200">
+                <div class="text-2xl md:text-3xl font-bold text-emas" id="jam">12</div>
+                <div class="text-xs text-gray-300">Jam</div>
+            </div>
+            <div class="countdown-box rounded-lg p-4 w-20 md:w-24" data-aos="zoom-in" data-aos-delay="300">
+                <div class="text-2xl md:text-3xl font-bold text-emas" id="menit">45</div>
+                <div class="text-xs text-gray-300">Menit</div>
+            </div>
+            <div class="countdown-box rounded-lg p-4 w-20 md:w-24" data-aos="zoom-in" data-aos-delay="400">
+                <div class="text-2xl md:text-3xl font-bold text-emas" id="detik">30</div>
+                <div class="text-xs text-gray-300">Detik</div>
+            </div>
+        </div>
+
+        <a href="#daftar" class="tombol-emas px-8 py-3 rounded-lg text-lg inline-block shadow-lg">DAFTAR SEKARANG</a>
+        <p class="text-sm text-gray-300 mt-4">Pendaftaran 100% GRATIS</p>
+    </div>
+</section>
+
+<!-- Hadiah -->
+<section id="hadiah" class="py-16 px-4 bg-abuTua/40">
+    <div class="container mx-auto">
+        <h3 class="text-2xl md:text-3xl font-bold text-center mb-12 text-emas">🏆 DAFTAR HADIAH UTAMA</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Hadiah 1 -->
+            <div class="bg-kaca rounded-xl p-6 text-center hover:scale-[1.02] transition-transform duration-300" data-aos="fade-up">
+                <div class="text-5xl mb-4 text-merah">🚗</div>
+                <h4 class="text-xl font-semibold mb-2">Toyota Agya Merah</h4>
+                <p class="text-gray-200">1 Unit Mobil Baru</p>
+            </div>
+            <!-- Hadiah 2 -->
+            <div class="bg-kaca rounded-xl p-6 text-center hover:scale-[1.02] transition-transform duration-300" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-5xl mb-4 text-emas">🛵</div>
+                <h4 class="text-xl font-semibold mb-2">Honda Vario 160</h4>
+                <p class="text-gray-200">1 Unit Sepeda Motor</p>
+            </div>
+            <!-- Hadiah 3 -->
+            <div class="bg-kaca rounded-xl p-6 text-center hover:scale-[1.02] transition-transform duration-300" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-5xl mb-4 text-white">📱</div>
+                <h4 class="text-xl font-semibold mb-2">iPhone 15 Pro Max</h4>
+                <p class="text-gray-200">1 Unit Ponsel Premium</p>
+            </div>
+            <!-- Hadiah 4 -->
+            <div class="bg-kaca rounded-xl p-6 text-center hover:scale-[1.02] transition-transform duration-300" data-aos="fade-up" data-aos-delay="300">
+                <div class="text-5xl mb-4 text-green-400">💵</div>
+                <h4 class="text-xl font-semibold mb-2">Uang Tunai</h4>
+                <p class="text-2xl font-bold text-emas">Rp200.000.000</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Jumlah Peserta -->
+<section class="py-10 px-4 bg-gradient-to-r from-hitam/80 to-abuMuda/80">
+    <div class="container mx-auto text-center" data-aos="fade-in">
+        <h4 class="text-xl mb-3">Jumlah Peserta Terdaftar Saat Ini</h4>
+        <p class="text-4xl md:text-5xl font-bold text-emas">12.457</p>
+        <p class="text-sm text-gray-300 mt-2">*Data diperbarui secara langsung</p>
+    </div>
+</section>
+
+<!-- Syarat & Ketentuan -->
+<section id="syarat" class="py-16 px-4">
+    <div class="container mx-auto max-w-4xl">
+        <h3 class="text-2xl md:text-3xl font-bold text-center mb-10 text-emas">📋 SYARAT & KETENTUAN</h3>
+        <div class="bg-kaca p-6 rounded-xl" data-aos="fade-up">
+            <ul class="list-disc list-inside space-y-3 text-gray-100">
+                <li>Warga Negara Indonesia berusia minimal 17 tahun.</li>
+                <li>Memiliki KTP atau identitas resmi yang masih berlaku.</li>
+                <li>Mengikuti akun media sosial resmi kami.</li>
+                <li>Mengisi formulir pendaftaran dengan data yang benar dan lengkap.</li>
+                <li>Satu orang hanya boleh mendaftar satu kali saja.</li>
+                <li>Pengundian dilakukan secara terbuka dan disiarkan langsung.</li>
+                <li>Hadiah akan diserahkan secara langsung kepada pemenang yang sah.</li>
+                <li>Penyelenggara berhak membatalkan pendaftaran jika ditemukan kecurangan.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Formulir Pendaftaran -->
+<section id="daftar" class="py-16 px-4 bg-abuTua/40">
+    <div class="container mx-auto max-w-xl">
+        <h3 class="text-2xl md:text-3xl font-bold text-center mb-10 text-emas">📝 FORMULIR PENDAFTARAN</h3>
+        <form class="bg-kaca p-6 md:p-8 rounded-xl space-y-5" data-aos="fade-up">
+            <div>
+                <label class="block mb-2 text-sm">Nama Lengkap</label>
+                <input type="text" class="w-full bg-abuMuda/80 border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-emas" placeholder="Sesuai KTP" required>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm">Nomor HP Aktif</label>
+                <input type="tel" class="w-full bg-abuMuda/80 border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-emas" placeholder="Contoh: 0812xxxxxxx" required>
+            </div>
+            <div>
+                <label class="block mb-2 text-sm">Alamat Lengkap</label>
+                <textarea rows="3" class="w-full bg-abuMuda/80 border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-emas" placeholder="Jalan, RT/RW, Kecamatan, Kota/Kabupaten" required></textarea>
+            </div>
+            <div class="flex items-center gap-2">
+                <input type="checkbox" id="setuju" required>
+                <label for="setuju" class="text-sm text-gray-200">Saya telah membaca dan menyetujui syarat & ketentuan yang berlaku</label>
+            </div>
+            <button type="submit" class="tombol-emas w-full py-3 rounded-lg text-lg">KIRIM PENDAFTARAN</button>
+        </form>
+    </div>
+</section>
+
+<!-- Bukti Pemenang -->
+<section id="bukti" class="py-16 px-4">
+    <div class="container mx-auto">
+        <h3 class="text-2xl md:text-3xl font-bold text-center mb-10 text-emas">📸 BUKTI PEMENANG & PENYERAHAN</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-kaca rounded-xl p-5" data-aos="fade-up">
+                <h5 class="text-lg font-semibold mb-2">Pemenang Sebelumnya</h5>
+                <p class="text-gray-200 mb-1">Nama: Budi Santoso</p>
+                <p class="text-gray-200 mb-1">Hadiah: Sepeda Motor</p>
+                <p class="text-gray-200 mb-3">Tanggal: 15 Juni 2026</p>
+                <div class="w-full h-40 bg-abuMuda/70 rounded-lg flex items-center justify-center text-gray-300">
+                    Foto Dokumentasi
+                </div>
+            </div>
+            <div class="bg-kaca rounded-xl p-5" data-aos="fade-up" data-aos-delay="100">
+                <h5 class="text-lg font-semibold mb-2">Pemenang Sebelumnya</h5>
+                <p class="text-gray-200 mb-1">Nama: Siti Aminah</p>
+                <p class="text-gray-200 mb-1">Hadiah: Uang Tunai Rp50 Juta</p>
+                <p class="text-gray-200 mb-3">Tanggal: 20 Mei 2026</p>
+                <div class="w-full h-40 bg-abuMuda/70 rounded-lg flex items-center justify-center text-gray-300">
+                    Foto Dokumentasi
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimoni -->
+<section id="testimoni" class="py-16 px-4 bg-abuTua/40">
+    <div class="container mx-auto">
+        <h3 class="text-2xl md:text-3xl font-bold text-center mb-10 text-emas">⭐ TESTIMONI PESERTA</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-kaca p-5 rounded-xl" data-aos="fade-up">
+                <p class="italic text-gray-100">"Saya awalnya ragu, tapi ternyata giveaway ini benar-benar nyata dan terpercaya. Proses pendaftaran mudah dan jelas."</p>
+                <p class="mt-4 font-semibold text-emas">- Andi Pratama</p>
+            </div>
+            <div class="bg-kaca p-5 rounded-xl" data-aos="fade-up" data-aos-delay="100">
+                <p class="italic text-gray-100">"Penyelenggara sangat profesional, pengundiannya terbuka dan bisa disaksikan secara langsung. Sangat merekomendasikan!"</p>
+                <p class="mt-4 font-semibold text-emas">- Rina Wijaya</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="py-16 px-4">
+    <div class="container mx-auto max-w-3xl">
+        <h3 class="text-2xl md:text-3xl font-bold text-center mb-10 text-emas">❓ PERTANYAAN YANG SERING DIAJUKAN</h3>
+        <div class="space-y-4">
+            <div class="bg-kaca p-4 rounded-lg" data-aos="fade-up">
+                <h5 class="font-semibold mb-2">Apakah pendaftaran berbayar?</h5>
+                <p class="text-gray-200">Tidak, pendaftaran dan seluruh proses dalam giveaway ini 100% GRATIS tanpa biaya apapun.</p>
+            </div>
+            <div class="bg-kaca p-4 rounded-lg" data-aos="fade-up">
+                <h5 class="font-semibold mb-2">Kapan pengundian dilaksanakan?</h5>
+                <p class="text-gray-200">Pengundian akan dilaksanakan sesuai hitungan mundur di atas, dan akan disiarkan langsung di media sosial resmi kami.</p>
+            </div>
+            <div class="bg-kaca p-4 rounded-lg" data-aos="fade-up">
+                <h5 class="font-semibold mb-2">Bagaimana cara mengetahui saya menang?</h5>
+                <p class="text-gray-200">Pemenang akan diumumkan di situs ini dan dihubungi langsung melalui nomor HP yang terdaftar.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Kontak & Media Sosial -->
+<section id="kontak" class="py-16 px-4 bg-abuTua/40">
+    <div class="container mx-auto text-center">
+        <h3 class="text-2xl md:text-3xl font-bold mb-8 text-emas">📱 HUBUNGI KAMI</h3>
+        <div class="flex justify-center gap-6 text-3xl mb-6">
+            <a href="#" class="hover-emas"><i class="fa fa-whatsapp"></i></a>
+            <a href="#" class="hover-emas"><i class="fa fa-instagram"></i></a>
+            <a href="#" class="hover-emas"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="hover-emas"><i class="fa fa-tiktok"></i></a>
+        </div>
+        <p class="text-gray-200">Ikuti akun kami untuk informasi terbaru dan pengumuman pemenang</p>
+    </div>
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-hitam/90 border-t border-gray-800/60 py-6 px-4 text-center text-sm text-gray-300">
+    <div class="container mx-auto">
+        <p>&copy; 2026 Giveaway Utama Resmi. Semua Hak Dilindungi.</p>
+        <div class="mt-2 space-x-4">
+            <a href="#" class="hover-emas">Kebijakan Privasi</a>
+            <a href="#" class="hover-emas">Syarat & Ketentuan</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+AOS.init({ duration: 800, once: true });
+
+const menuToggle = document.getElementById('menuToggle');
+const menuMobile = document.getElementById('menuMobile');
+menuToggle.addEventListener('click', () => {
+    menuMobile.classList.toggle('-translate-x-full');
+});
+
+// Hitungan mundur
+let waktu = setInterval(() => {
+    let d = document.getElementById('detik');
+    let detikBaru = parseInt(d.innerText) - 1;
+    if (detikBaru >= 0) {
+        d.innerText = detikBaru < 10 ? '0' + detikBaru : detikBaru;
+    } else {
+        d.innerText = '59';
+        let m = document.getElementById('menit');
+        let menitBaru = parseInt(m.innerText) - 1;
+        m.innerText = menitBaru < 10 ? '0' + menitBaru : menitBaru;
+    }
+}, 1000);
+</script>
+
+</body>
+</html>
